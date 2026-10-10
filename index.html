@@ -3,57 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GO SAFAR | جو سفر - نظام محاسبي خرافي</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800;900&family=Cairo:wght@700;800&display=swap" rel="stylesheet">
+<title>GO SAFAR</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#061a35;--navy2:#03172e;--blue:#1478ee;--cyan:#20c9ff;--gold:#ffd24a;--green:#10b981;--violet:#7c3aed;--orange:#f59e0b;--red:#ef4444;--bg:#eef2f9;--card:#ffffff;--border:#e2e8f0;--mut:#64748b}
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#0f172a}
-.header{height:70px;background:linear-gradient(100deg,var(--navy) 0%,#0e2e6b 60%,var(--blue) 100%);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:50;box-shadow:0 6px 30px rgba(0,0,0,.25)}
-.logo{font-family:'Cairo';font-weight:800;font-size:26px;letter-spacing:.5px}.logo span{color:var(--gold)}
-.hright{display:flex;gap:12px;align-items:center}
-.clock{font-weight:800;background:rgba(255,255,255,.12);padding:8px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15)}
-.layout{display:flex;min-height:calc(100vh - 70px)}
-.side{width:260px;background:linear-gradient(180deg,var(--navy) 0%,#0a1f4a 100%);color:#cbd5e1;padding:12px 10px;position:sticky;top:70px;height:calc(100vh - 70px);overflow:auto}
-.sitem{padding:13px 14px;border-radius:12px;display:flex;gap:12px;align-items:center;cursor:pointer;margin-bottom:6px;font-weight:700;font-size:14px;transition:.2s;border:1px solid transparent}
-.sitem:hover{background:rgba(255,255,255,.08);color:#fff;transform:translateX(-3px)}
-.sitem.active{background:linear-gradient(90deg,rgba(20,120,238,.3),rgba(32,201,255,.15));color:#fff;border-color:rgba(32,201,255,.35);box-shadow:0 4px 16px rgba(20,120,238,.2)}
-.sitem i{font-size:18px;width:26px;text-align:center}
-.main{flex:1;padding:20px;max-width:1400px}
-.hero{background:linear-gradient(135deg,var(--navy2) 0%,#0a3a6b 30%,var(--blue) 85%,var(--cyan) 120%);border-radius:22px;padding:28px;color:#fff;position:relative;overflow:hidden}
-.hero:before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(255,210,74,.25),transparent 70%);top:-150px;left:-100px}
-.hero h1{font-family:'Cairo';font-size:34px;font-weight:800;position:relative}.hero h1 b{color:var(--gold)}
-.hero p{opacity:.9;margin-top:6px;position:relative}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}
-.kpi{background:var(--card);border-radius:18px;padding:18px;border:1px solid var(--border);position:relative;overflow:hidden;box-shadow:0 8px 24px rgba(6,26,53,.06)}
-.kpi:before{content:'';position:absolute;top:0;right:0;left:0;height:5px}
-.kpi.c1:before{background:var(--blue)}.kpi.c2:before{background:var(--green)}.kpi.c3:before{background:var(--orange)}.kpi.c4:before{background:var(--violet)}
-.kpi h4{font-size:12px;color:var(--mut);margin-bottom:6px}.kpi .v{font-size:28px;font-weight:900}
-.kpi .sub{font-size:11px;color:var(--mut);margin-top:4px}
-.grid2{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;box-shadow:0 6px 20px rgba(0,0,0,.04)}
-.card h3{font-size:15px;margin-bottom:12px}
-.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-input,select,textarea{padding:11px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-family:'Tajawal';background:#fff}
-.btn{padding:11px 16px;border-radius:11px;border:none;font-weight:800;cursor:pointer;font-size:14px}
-.btnN{background:var(--navy);color:#fff}.btnB{background:var(--blue);color:#fff}.btnG{background:var(--gold);color:var(--navy)}.btnGh{background:#f1f5f9;border:1px solid var(--border)}
-.twrap{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:auto}
-table{width:100%;border-collapse:collapse;min-width:800px}th,td{padding:12px;text-align:right;font-size:13px;border-bottom:1px solid #f1f5f9;white-space:nowrap}th{background:#f8fafc;color:var(--mut);font-size:11px;font-weight:800}
-.badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800;display:inline-block}
-.bg{background:#dcfce7;color:#166534}.br{background:#fee2e2;color:#991b1b}.bb{background:#dbeafe;color:#1e40af}.bo{background:#fef3c7;color:#92400e}.bv{background:#f3e8ff;color:#6b21a8}
-.modal{position:fixed;inset:0;background:rgba(6,26,53,.6);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:200;padding:14px}.modal.show{display:flex}
-.mbox{background:#fff;border-radius:20px;padding:20px;width:100%;max-width:720px;max-height:92vh;overflow:auto}
-.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fgrid .full{grid-column:1/-1}
-.fgrid label{font-size:11px;color:var(--mut);font-weight:800;margin-bottom:4px;display:block}
-.footer{margin-top:22px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:12px 16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--mut)}
-@media(max-width:1000px){.kpis{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}.side{width:68px}.sitem span{display:none}.fgrid{grid-template-columns:1fr}}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Tajawal',sans-serif;background:#eef2f9}
+.h{height:60px;background:linear-gradient(90deg,#061a35,#1478ee);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.l{font-weight:800;font-size:22px}.l b{color:#ffd24a}
+.side{width:220px;background:#061a35;color:#cbd5e1;position:fixed;top:60px;bottom:0;padding:10px;overflow:auto}
+.si{padding:12px;border-radius:10px;cursor:pointer;margin-bottom:4px}.si.active,.si:hover{background:#1478ee;color:#fff}
+.main{margin-right:220px;padding:16px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kp{background:#fff;border-radius:14px;padding:14px;border:1px solid #e2e8f0}
+.twrap{background:#fff;border-radius:14px;overflow:auto;margin-top:12px;border:1px solid #e2e8f0}
+table{width:100%;border-collapse:collapse;min-width:700px}th,td{padding:10px;text-align:right;font-size:13px;border-bottom:1px solid #f1f5f9}th{background:#f8fafc;color:#64748b}
+.btn{padding:10px 14px;border:none;border-radius:10px;font-weight:800;cursor:pointer}.btnN{background:#061a35;color:#fff}.btnB{background:#1478ee;color:#fff}.btnG{background:#ffd24a;color:#061a35}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:99;padding:10px}.modal.show{display:flex}.box{background:#fff;border-radius:16px;padding:16px;width:100%;max-width:650px;max-height:90vh;overflow:auto}
+.f{display:grid;grid-template-columns:1fr 1fr;gap:10px}.f input,.f select{width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px}
 </style>
 </head>
 <body>
-<div class="header"><div class="logo">GO<span>-SAFAR</span> | جو سفر</div><div class="hright"><div class="clock" id="clock">--:--</div><div style="background:var(--gold);color:var(--navy);padding:8px 12px;border-radius:10px;font-weight:800;font-size:12px">نسخة مجانية مدى الحياة ♾️</div></div></div>
-<div class="layout">
+<div class="h"><div class="l">GO<b>-SAFAR</b></div><div id="clk"></div></div>
 <div class="side" id="side"></div>
-<div class="main">
-<div id="content"></div>
-<div class="footer"><div><b>GO SAFAR</b> — الفيوم مركز طاميه — 01002454992 — gosafar98@gmail.com</div><div>العميل → الخدمة → الحجز → الفاتورة → التحصيل → المورد → الخزنة → الربح</div></div>
-</div>
-</div>
+<div class="main"><div id="content"></div></div>
+<div class="modal" id="mS"><div class="box"><h3>خدمة جديدة</h3><div class="f" style="margin-top:10px"><div><label>التاريخ</label><input type="date" id="f_d"></div><div><label>اسم العميل *</label><input id="f_c"></div><div><label>هاتف العميل</label><input id="f_cp"></div><div><label>اسم المندوب</label><input id="f_m"></div><div><label>الخدمة</label><select id="f_st"><option>زيارة سياحية</option><option>زيارة عائلية</option><option>زيارة أعمال</option><option>زيارة شخصية</option><option>تأشيرة - تساهيل</option><option>حجز طيران</option><option>خدمة مخصصة</option></select></div><div><label>المبلغ</label><input type="number" id="f_a"></div><div><label>المدفوع الآن</label><input type="number" id="f_p" value="0"></div><div><label>التكلفة</label><input type="number" id="f_co" value="0"></div></div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button class="btn" onclick="hide('mS')">إلغاء</button><button class="btn btnN" onclick="saveS()">حفظ ✅</button></div></div></div>
+<div class="modal" id="mT"><div class="box" style="max-width:450px"><h3>تحويل</h3><div class="f" style="grid-template-columns:1fr"><div><label>النوع</label><select id="t_t"><option value="collection">تحصيل داخل</option><option value="payment">سداد خارج</option></select></div><div><label>الشخص</label><input id="t_p" list="plist"><datalist id="plist"></datalist></div><div><label>المبلغ</label><input type="number" id="t_a"></div></div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button class="btn" onclick="hide('mT')">إلغاء</button><button class="btn btnB" onclick="saveT()">حفظ</button></div></div></div>
+<script>
+let KEY='go_final_simple';let db=JSON.parse(localStorage.getItem(KEY)||'null')||{services:[],transfers:[],expenses:[],credits:{}};let cur='dash';
+function save(){localStorage.setItem(KEY,JSON.stringify(db));}
+function hide(id){document.getElementById(id).classList.remove('show');}
+function show(id){document.getElementById(id).classList.add('show');}
+function nav(k){cur=k;build();render();}
+function build(){let items=[['dash','🏠 الرئيسية'],['services','🧳 الخدمات'],['clients','👤 العملاء'],['transfers','💱 التحويلات'],['expenses','💸 المصروفات'],['cash','🏦 الخزنة'],['backup','💾 نسخ']];document.getElementById('side').innerHTML=items.map(([k,l])=>`<div class="si ${cur===k?'active':''}" onclick="nav('${k}')">${l}</div>`).join('');}
+function egp(s){return s.amount;}function rem(s){return Math.max(0,s.amount-(s.paid||0));}
+function totals(){let m={};db.services.forEach(s=>{if(!m[s.client])m[s.client]={name:s.client,total:0,paid:0,c:0};m[s.client].total+=s.amount;m[s.client].paid+=s.paid||0;});return m;}
+function allocate(name,amt){let left=amt;db.services.filter(s=>s.client===name||s.mandob===name).sort((a,b)=>new Date(a.date)-new Date(b.date)).forEach(s=>{let r=rem(s);if(r<=0||left<=0)return;let t=Math.min(r,left);s.paid=(s.paid||0)+t;left-=t;});if(left>0)db.credits[name]=(db.credits[name]||0)+left;save();}
+function render(){if(cur==='dash')renderDash();else if(cur==='services')renderS();else if(cur==='clients')renderC();else if(cur==='transfers')renderT();else if(cur==='expenses')renderE();else if(cur==='cash')renderCash();else if(cur==='backup')renderB();}
+function renderDash(){let ts=db.services.length,sa=db.services.reduce((a,s)=>a+s.amount,0),ex=db.expenses.reduce((a,e)=>a+e.amount,0),ci=db.transfers.filter(t=>t.type==='collection').reduce((a,t)=>a+t.amount,0),co=db.transfers.filter(t=>t.type==='payment').reduce((a,t)=>a+t.amount,0)+ex,ba=ci-co;document.getElementById('content').innerHTML=`<div style="background:linear-gradient(135deg,#03172e,#1478ee);color:#fff;padding:20px;border-radius:18px"><h2>GO <b style="color:#ffd24a">SAFAR</b> - نظام جو سفر</h2><p>الفيوم - طاميه - 01002454992</p></div><div class="kpis" style="margin-top:12px"><div class="kp"><small>الخدمات</small><div style="font-size:24px;font-weight:800">${ts}</div></div><div class="kp"><small>المبيعات</small><div style="font-size:20px;font-weight:800">${sa.toLocaleString()} EGP</div></div><div class="kp"><small>المصروفات</small><div style="font-size:20px;font-weight:800">${ex.toLocaleString()}</div></div><div class="kp"><small>الخزنة</small><div style="font-size:20px;font-weight:800">${ba.toLocaleString()} EGP</div></div></div><div style="margin-top:12px;display:flex;gap:8px"><button class="btn btnG" onclick="openS()">➕ خدمة</button><button class="btn btnB" onclick="openT('collection')">💰 تحصيل</button><button class="btn btnN" onclick="openT('payment')">💸 سداد</button></div>`;}
+function renderS(){document.getElementById('content').innerHTML=`<div style="display:flex;justify-content:space-between"><h3>الخدمات</h3><button class="btn btnG" onclick="openS()">➕ خدمة</button></div><div class="twrap"><table><thead><tr><th>#</th><th>التاريخ</th><th>العميل</th><th>المندوب</th><th>الخدمة</th><th>المستحق</th><th>المدفوع</th><th>المتبقي</th><th>حذف</th></tr></thead><tbody>${db.services.slice().reverse().map((s,i)=>`<tr><td>${i+1}</td><td>${s.date}</td><td>${s.client}</td><td>${s.mandob||'-'}</td><td>${s.stype}</td><td>${s.amount.toLocaleString()}</td><td>${(s.paid||0).toLocaleString()}</td><td>${rem(s).toLocaleString()}</td><td><button onclick="del('${s.id}')">🗑️</button></td></tr>`).join('')||'<tr><td colspan=9 style="text-align:center">لا يوجد</td></tr>'}</tbody></table></div>`;}
+function openS(){document.getElementById('f_d').value=new Date().toISOString().slice(0,10);show('mS');}
+function saveS(){let s={id:Date.now().toString(),date:document.getElementById('f_d').value,client:document.getElementById('f_c').value.trim(),cphone:document.getElementById('f_cp').value,mandob:document.getElementById('f_m').value,stype:document.getElementById('f_st').value,amount:parseFloat(document.getElementById('f_a').value||0),paid:parseFloat(document.getElementById('f_p').value||0),cost:parseFloat(document.getElementById('f_co').value||0)};if(!s.client)return alert('اسم العميل');db.services.push(s);if(s.paid>0)db.transfers.push({id:Date.now().toString(),type:'collection',date:s.date,person:s.client,amount:s.paid});save();hide('mS');renderS();}
+function del(id){if(!confirm('حذف؟'))return;db.services=db.services.filter(x=>x.id!==id);save();renderS();}
+function renderC(){let m=totals();document.getElementById('content').innerHTML=`<h3>العملاء</h3><div class="twrap"><table><thead><tr><th>العميل</th><th>المستحق</th><th>المدفوع</th><th>المتبقي</th></tr></thead><tbody>${Object.values(m).map(c=>`<tr><td>${c.name}</td><td>${c.total.toLocaleString()}</td><td>${c.paid.toLocaleString()}</td><td>${(c.total-c.paid).toLocaleString()}</td></tr>`).join('')||'<tr><td colspan=4>لا يوجد</td></tr>'}</tbody></table></div>`;}
+function renderT(){document.getElementById('content').innerHTML=`<div style="display:flex;justify-content:space-between"><h3>التحويلات</h3><div><button class="btn btnB" onclick="openT('collection')">➕ تحصيل</button> <button class="btn btnN" onclick="openT('payment')">➕ سداد</button></div></div><div class="twrap" style="margin-top:10px"><table><thead><tr><th>التاريخ</th><th>النوع</th><th>الشخص</th><th>المبلغ</th></tr></thead><tbody>${db.transfers.slice().reverse().map(t=>`<tr><td>${t.date}</td><td>${t.type==='collection'?'تحصيل داخل':'سداد خارج'}</td><td>${t.person}</td><td>${t.amount.toLocaleString()}</td></tr>`).join('')||'<tr><td colspan=4>لا يوجد</td></tr>'}</tbody></table></div>`;}
+function openT(type){document.getElementById('t_t').value=type;let list=Object.keys(totals());document.getElementById('plist').innerHTML=list.map(n=>`<option value="${n}">`).join('');show('mT');}
+function saveT(){let type=document.getElementById('t_t').value,person=document.getElementById('t_p').value.trim(),amount=parseFloat(document.getElementById('t_a').value||0);if(!person||!amount)return alert('اكمل');db.transfers.push({id:Date.now().toString(),type,date:new Date().toISOString().slice(0,10),person,amount});if(type==='collection')allocate(person,amount);save();hide('mT');renderT();}
+function renderE(){document.getElementById('content').innerHTML=`<h3>المصروفات</h3><button class="btn btnG" onclick="let t=prompt('البند:'),a=parseFloat(prompt('المبلغ:')||'0');if(t&&a){db.expenses.push({id:Date.now().toString(),date:new Date().toISOString().slice(0,10),title:t,amount:a});save();renderE();}">➕ مصروف</button><div class="twrap" style="margin-top:10px"><table><thead><tr><th>التاريخ</th><th>البند</th><th>المبلغ</th></tr></thead><tbody>${db.expenses.slice().reverse().map(e=>`<tr><td>${e.date}</td><td>${e.title}</td><td>${e.amount}</td></tr>`).join('')||'<tr><td colspan=3>لا يوجد</td></tr>'}</tbody></table></div>`;}
+function renderCash(){let ci=db.transfers.filter(t=>t.type==='collection').reduce((a,t)=>a+t.amount,0),co=db.transfers.filter(t=>t.type==='payment').reduce((a,t)=>a+t.amount,0)+db.expenses.reduce((a,e)=>a+e.amount,0),ba=ci-co;document.getElementById('content').innerHTML=`<h3>الخزنة</h3><div class="kpis"><div class="kp"><small>الرصيد</small><div style="font-size:22px;font-weight:800">${ba.toLocaleString()}</div></div><div class="kp"><small>الداخل</small><div style="font-size:22px;color:#10b981;font-weight:800">${ci.toLocaleString()}</div></div><div class="kp"><small>الخارج</small><div style="font-size:22px;color:#ef4444;font-weight:800">${co.toLocaleString()}</div></div></div>`;}
+function renderB(){document.getElementById('content').innerHTML=`<h3>نسخ احتياطي</h3><div style="background:#fff;padding:16px;border-radius:12px;margin-top:10px"><button class="btn btnB" onclick="let s=JSON.stringify(db),b=new Blob([s],{type:'application/json'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='backup.json';a.click();">💾 تحميل نسخة</button> <label class="btn" style="background:#f1f5f9"><input type="file" style="display:none" onchange="let f=this.files[0],r=new FileReader();r.onload=e=>{db=JSON.parse(e.target.result);save();location.reload();};r.readAsText(f);">📂 استرجاع</label></div>`;}
+build();render();setInterval(()=>{document.getElementById('clk').textContent=new Date().toLocaleString('ar-EG');},1000);
+</script>
+</body>
+</html>
