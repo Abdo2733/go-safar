@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GO-SAFAR - نظام محاسبة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+body{background:#f0f4f8;color:#1a202c}
+.header{background:linear-gradient(135deg,#0f172a 0%,#1e40af 100%);color:white;padding:20px;text-align:center}
+.header h1{font-size:28px;font-weight:800}
+.container{max-width:1200px;margin:20px auto;padding:0 15px;display:grid;grid-template-columns:1fr 1fr;gap:15px}
+@media(max-width:768px){.container{grid-template-columns:1fr}}
+.card{background:white;border-radius:16px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.card h2{font-size:18px;margin-bottom:15px;color:#1e40af;border-right:4px solid #3b82f6;padding-right:10px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;grid-column:span 2}
+@media(max-width:768px){.stats{grid-column:span 1}}
+.stat{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:white;padding:15px;border-radius:12px;text-align:center}
+.stat:nth-child(2){background:linear-gradient(135deg,#10b981,#059669)}
+.stat:nth-child(3){background:linear-gradient(135deg,#f59e0b,#d97706)}
+.stat .num{font-size:24px;font-weight:800}
+input,select,button{width:100%;padding:12px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:14px;margin-bottom:10px}
+button{background:#1e40af;color:white;border:none;font-weight:700;cursor:pointer}
+.btn-green{background:#10b981} .btn-red{background:#ef4444} .btn-sm{padding:6px 10px;font-size:12px;width:auto;display:inline-block;margin:2px}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
+th,td{padding:10px 8px;text-align:right;border-bottom:1px solid #e2e8f0}
+th{background:#f8fafc}
+.badge{padding:3px 8px;border-radius:20px;font-size:11px;font-weight:700}
+.badge-paid{background:#d1fae5;color:#065f46} .badge-unpaid{background:#fee2e2;color:#991b1b}
+.full{grid-column:span 2} @media(max-width:768px){.full{grid-column:span 1}}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>🚌 GO-SAFAR - جو سفار الفيوم</h1>
+<p>نظام محاسبة و إدارة حجوزات - الإصدار الرسمي 2026</p>
+</div>
+<div class="container">
+<div class="stats">
+<div class="stat"><div class="num" id="totalRevenue">0 ج</div><div>إجمالي الإيرادات</div></div>
+<div class="stat"><div class="num" id="totalProfit">0 ج</div><div>صافي الربح</div></div>
+<div class="stat"><div class="num" id="totalCustomers">0</div><div>عدد العملاء</div></div>
+</div>
+<div class="card">
+<h2>➕ إضافة رحلة جديدة</h2>
+<input id="tripName" placeholder="اسم الرحلة - مثال: القاهرة - شرم الشيخ">
+<input id="tripDate" type="date">
+<input id="tripPrice" type="number" placeholder="سعر الفرد">
+<input id="tripSeats" type="number" placeholder="عدد المقاعد (50)">
+<button onclick="addTrip()">حفظ الرحلة</button>
+</div>
+<div class="card">
+<h2>👤 حجز عميل</h2>
+<select id="customerTrip"></select>
+<input id="customerName" placeholder="اسم العميل">
+<input id="customerPhone" placeholder="رقم الموبايل">
+<input id="customerSeats" type="number" placeholder="عدد الأفراد">
+<input id="customerPaid" type="number" placeholder="المبلغ المدفوع">
+<button class="btn-green" onclick="addCustomer()">تأكيد الحجز</button>
+</div>
+<div class="card full">
+<h2>📋 الرحلات الحالية</h2>
+<table id="tripsTable"><thead><tr><th>الرحلة</th><th>التاريخ</th><th>السعر</th><th>المقاعد</th><th>محجوز</th><th>إجراء</th></tr></thead><tbody></tbody></table>
+</div>
+<div class="card full">
+<h2>👥 كشف العملاء والحجوزات</h2>
+<input id="searchCustomer" placeholder="🔍 ابحث باسم العميل..." oninput="renderCustomers()">
+<table id="customersTable"><thead><tr><th>العميل</th><th>الرحلة</th><th>الهاتف</th><th>الأفراد</th><th>الإجمالي</th><th>المدفوع</th><th>المتبقي</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody></tbody></table>
+<button class="btn-green" onclick="exportExcel()" style="margin-top:10px">📥 تصدير Excel</button>
+</div>
+<div class="card">
+<h2>💰 المصروفات</h2>
+<input id="expName" placeholder="وصف المصروف - مثال: جاز">
+<input id="expAmount" type="number" placeholder="المبلغ">
+<button class="btn-red" onclick="addExpense()">إضافة مصروف</button>
+<table id="expTable"><thead><tr><th>الوصف</th><th>المبلغ</th><th>حذف</th></tr></thead><tbody></tbody></table>
+<div style="margin-top:10px;font-weight:800">إجمالي المصروفات: <span id="totalExp">0</span> ج</div>
+</div>
+<div class="card">
+<h2>📊 ملخص حساب GO-SAFAR</h2>
+<div style="line-height:2.2">
+إجمالي الحجوزات: <b id="sumTotal">0</b> ج<br>
+المدفوع من العملاء: <b id="sumPaid" style="color:green">0</b> ج<br>
+المتبقي عند العملاء: <b id="sumRemain" style="color:red">0</b> ج<br>
+المصروفات: <b id="sumExp2">0</b> ج<br><hr>
+صافي الربح النهائي: <b id="finalProfit" style="font-size:20px;color:#1e40af">0 ج</b>
+</div>
+<button onclick="resetAll()" style="background:#6b7280;margin-top:15px">🗑️ مسح كل البيانات</button>
+</div>
+</div>
+<script>
+let trips = JSON.parse(localStorage.getItem('go_trips')||'[]');
+let customers = JSON.parse(localStorage.getItem('go_customers')||'[]');
+let expenses = JSON.parse(localStorage.getItem('go_exp')||'[]');
+function save(){localStorage.setItem('go_trips',JSON.stringify(trips));localStorage.setItem('go_customers',JSON.stringify(customers));localStorage.setItem('go_exp',JSON.stringify(expenses));renderAll()}
+function addTrip(){if(!tripName.value||!tripDate.value||!tripPrice.value)return alert('اكمل بيانات الرحلة');trips.push({id:Date.now(),name:tripName.value,date:tripDate.value,price:+tripPrice.value,seats:+tripSeats.value||50});tripName.value=tripDate.value=tripPrice.value=tripSeats.value='';save();}
+function addCustomer(){let t=trips.find(x=>x.id==customerTrip.value);if(!t)return alert('اختار رحلة');if(!customerName.value)return alert('اكتب اسم العميل');let seats=+customerSeats.value||1;let total=seats*t.price;let paid=+customerPaid.value||0;customers.push({id:Date.now(),tripId:t.id,tripName:t.name,name:customerName.value,phone:customerPhone.value,seats,total,paid,remain:total-paid});customerName.value=customerPhone.value=customerSeats.value=customerPaid.value='';save();}
+function addExpense(){if(!expName.value||!expAmount.value)return alert('اكمل بيانات المصروف');expenses.push({id:Date.now(),name:expName.value,amount:+expAmount.value});expName.value=expAmount.value='';save();}
+function delTrip(id){if(confirm('تحذف الرحلة وكل حجوزاتها؟')){trips=trips.filter(t=>t.id!=id);customers=customers.filter(c=>c.tripId!=id);save()}}
+function delCustomer(id){customers=customers.filter(c=>c.id!=id);save()}
+function delExp(id){expenses=expenses.filter(e=>e.id!=id);save()}
+function payFull(id){let c=customers.find(x=>x.id==id);c.paid=c.total;c.remain=0;save()}
+function renderAll(){let tbody=document.querySelector('#tripsTable tbody');tbody.innerHTML='';let sel=document.getElementById('customerTrip');sel.innerHTML='<option value="">-- اختار الرحلة --</option>';trips.forEach(t=>{let booked=customers.filter(c=>c.tripId==t.id).reduce((s,c)=>s+c.seats,0);tbody.innerHTML+=`<tr><td>${t.name}</td><td>${t.date}</td><td>${t.price} ج</td><td>${t.seats}</td><td>${booked}</td><td><button class="btn-sm btn-red" onclick="delTrip(${t.id})">حذف</button></td></tr>`;sel.innerHTML+=`<option value="${t.id}">${t.name} - ${t.date}</option>`});renderCustomers();renderExpenses();renderStats();}
+function renderCustomers(){let q=(searchCustomer.value||'').toLowerCase();let tbody=document.querySelector('#customersTable tbody');tbody.innerHTML='';customers.filter(c=>c.name.toLowerCase().includes(q)||c.tripName.toLowerCase().includes(q)).forEach(c=>{tbody.innerHTML+=`<tr><td>${c.name}</td><td>${c.tripName}</td><td>${c.phone}</td><td>${c.seats}</td><td>${c.total}</td><td>${c.paid}</td><td style="color:${c.remain>0?'red':'green'}">${c.remain}</td><td><span class="badge ${c.remain==0?'badge-paid':'badge-unpaid'}">${c.remain==0?'مدفوع':'متبقي'}</span></td><td>${c.remain>0?`<button class="btn-sm btn-green" onclick="payFull(${c.id})">تم الدفع</button>`:''}<button class="btn-sm btn-red" onclick="delCustomer(${c.id})">x</button></td></tr>`});}
+function renderExpenses(){let tbody=document.querySelector('#expTable tbody');tbody.innerHTML='';let total=0;expenses.forEach(e=>{total+=e.amount;tbody.innerHTML+=`<tr><td>${e.name}</td><td>${e.amount}</td><td><button class="btn-sm btn-red" onclick="delExp(${e.id})">x</button></td></tr>`});document.getElementById('totalExp').innerText=total;document.getElementById('sumExp2').innerText=total;}
+function renderStats(){let sumTotal=customers.reduce((s,c)=>s+c.total,0);let sumPaid=customers.reduce((s,c)=>s+c.paid,0);let sumRemain=sumTotal-sumPaid;let sumExp=expenses.reduce((s,e)=>s+e.amount,0);let profit=sumPaid-sumExp;document.getElementById('totalRevenue').innerText=sumPaid+' ج';document.getElementById('totalProfit').innerText=profit+' ج';document.getElementById('totalCustomers').innerText=customers.length;document.getElementById('sumTotal').innerText=sumTotal;document.getElementById('sumPaid').innerText=sumPaid;document.getElementById('sumRemain').innerText=sumRemain;document.getElementById('finalProfit').innerText=profit+' ج';}
+function exportExcel(){let csv="العميل,ال
