@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GO SAFAR | جو سفر - نظام محاسبي خرافي</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800;900&family=Cairo:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#061a35;--navy2:#03172e;--blue:#1478ee;--cyan:#20c9ff;--gold:#ffd24a;--green:#10b981;--violet:#7c3aed;--orange:#f59e0b;--red:#ef4444;--bg:#eef2f9;--card:#ffffff;--border:#e2e8f0;--mut:#64748b}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Tajawal',sans-serif;background:var(--bg);color:#0f172a}
+.header{height:70px;background:linear-gradient(100deg,var(--navy) 0%,#0e2e6b 60%,var(--blue) 100%);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:50;box-shadow:0 6px 30px rgba(0,0,0,.25)}
+.logo{font-family:'Cairo';font-weight:800;font-size:26px;letter-spacing:.5px}.logo span{color:var(--gold)}
+.hright{display:flex;gap:12px;align-items:center}
+.clock{font-weight:800;background:rgba(255,255,255,.12);padding:8px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15)}
+.layout{display:flex;min-height:calc(100vh - 70px)}
+.side{width:260px;background:linear-gradient(180deg,var(--navy) 0%,#0a1f4a 100%);color:#cbd5e1;padding:12px 10px;position:sticky;top:70px;height:calc(100vh - 70px);overflow:auto}
+.sitem{padding:13px 14px;border-radius:12px;display:flex;gap:12px;align-items:center;cursor:pointer;margin-bottom:6px;font-weight:700;font-size:14px;transition:.2s;border:1px solid transparent}
+.sitem:hover{background:rgba(255,255,255,.08);color:#fff;transform:translateX(-3px)}
+.sitem.active{background:linear-gradient(90deg,rgba(20,120,238,.3),rgba(32,201,255,.15));color:#fff;border-color:rgba(32,201,255,.35);box-shadow:0 4px 16px rgba(20,120,238,.2)}
+.sitem i{font-size:18px;width:26px;text-align:center}
+.main{flex:1;padding:20px;max-width:1400px}
+.hero{background:linear-gradient(135deg,var(--navy2) 0%,#0a3a6b 30%,var(--blue) 85%,var(--cyan) 120%);border-radius:22px;padding:28px;color:#fff;position:relative;overflow:hidden}
+.hero:before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(255,210,74,.25),transparent 70%);top:-150px;left:-100px}
+.hero h1{font-family:'Cairo';font-size:34px;font-weight:800;position:relative}.hero h1 b{color:var(--gold)}
+.hero p{opacity:.9;margin-top:6px;position:relative}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}
+.kpi{background:var(--card);border-radius:18px;padding:18px;border:1px solid var(--border);position:relative;overflow:hidden;box-shadow:0 8px 24px rgba(6,26,53,.06)}
+.kpi:before{content:'';position:absolute;top:0;right:0;left:0;height:5px}
+.kpi.c1:before{background:var(--blue)}.kpi.c2:before{background:var(--green)}.kpi.c3:before{background:var(--orange)}.kpi.c4:before{background:var(--violet)}
+.kpi h4{font-size:12px;color:var(--mut);margin-bottom:6px}.kpi .v{font-size:28px;font-weight:900}
+.kpi .sub{font-size:11px;color:var(--mut);margin-top:4px}
+.grid2{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;box-shadow:0 6px 20px rgba(0,0,0,.04)}
+.card h3{font-size:15px;margin-bottom:12px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+input,select,textarea{padding:11px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-family:'Tajawal';background:#fff}
+.btn{padding:11px 16px;border-radius:11px;border:none;font-weight:800;cursor:pointer;font-size:14px}
+.btnN{background:var(--navy);color:#fff}.btnB{background:var(--blue);color:#fff}.btnG{background:var(--gold);color:var(--navy)}.btnGh{background:#f1f5f9;border:1px solid var(--border)}
+.twrap{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:800px}th,td{padding:12px;text-align:right;font-size:13px;border-bottom:1px solid #f1f5f9;white-space:nowrap}th{background:#f8fafc;color:var(--mut);font-size:11px;font-weight:800}
+.badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800;display:inline-block}
+.bg{background:#dcfce7;color:#166534}.br{background:#fee2e2;color:#991b1b}.bb{background:#dbeafe;color:#1e40af}.bo{background:#fef3c7;color:#92400e}.bv{background:#f3e8ff;color:#6b21a8}
+.modal{position:fixed;inset:0;background:rgba(6,26,53,.6);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:200;padding:14px}.modal.show{display:flex}
+.mbox{background:#fff;border-radius:20px;padding:20px;width:100%;max-width:720px;max-height:92vh;overflow:auto}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fgrid .full{grid-column:1/-1}
+.fgrid label{font-size:11px;color:var(--mut);font-weight:800;margin-bottom:4px;display:block}
+.footer{margin-top:22px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:12px 16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--mut)}
+@media(max-width:1000px){.kpis{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}.side{width:68px}.sitem span{display:none}.fgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="header"><div class="logo">GO<span>-SAFAR</span> | جو سفر</div><div class="hright"><div class="clock" id="clock">--:--</div><div style="background:var(--gold);color:var(--navy);padding:8px 12px;border-radius:10px;font-weight:800;font-size:12px">نسخة مجانية مدى الحياة ♾️</div></div></div>
+<div class="layout">
+<div class="side" id="side"></div>
+<div class="main">
+<div id="content"></div>
+<div class="footer"><div><b>GO SAFAR</b> — الفيوم مركز طاميه — 01002454992 — gosafar98@gmail.com</div><div>العميل → الخدمة → الحجز → الفاتورة → التحصيل → المورد → الخزنة → الربح</div></div>
+</div>
+</div>
